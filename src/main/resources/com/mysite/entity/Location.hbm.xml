@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18 nov. 2016 19:03:38 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.mysite.entity.Location" table="location" catalog="school_manager_db" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        <property name="city" type="string">
+            <column name="CITY" length="50" not-null="true" />
+        </property>
+        <set name="courseSessions" table="course_session" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="LOCATION_ID" not-null="true" />
+            </key>
+            <one-to-many class="com.mysite.entity.CourseSession" />
+        </set>
+    </class>
+</hibernate-mapping>
